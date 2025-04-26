@@ -1,0 +1,87 @@
+﻿@page "/"
+@using BlazorApp.Components.Models
+@using BlazorApp.Components.Repository
+
+<PageTitle>Home</PageTitle>
+
+<h1>Rezultate BAC</h1>
+
+<label for="yearSelect">Select Year:</label>
+<select id="yearSelect" @onchange="OnYearChanged">
+    @foreach (var year in years)
+    {
+        <option value="@year">@year</option>
+    }
+</select>
+
+@if (bacList == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cod Judet</th>
+                <th>Scoala</th>
+                <th>Cod Student</th>
+                <th>Medie</th>
+                <th>Romana</th>
+                <th>Materie Obligatorie</th>
+                <th>Materie Aleasa</th>
+                <th>TIC</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bac in bacList)
+            {
+                <tr>
+                    <td>@bac.County</td>
+                    <td>@bac.School</td>
+                    <td>@bac.Code</td>
+                    <td>@bac.Avg.ToString("0.00")</td>
+                    <td>@bac.RomanianGradeFinal.ToString("0.00")</td>
+                    <td>@bac.MandatoryGradeFinal.ToString("0.00")</td>
+                    <td>@bac.ChosenGradeFinal.ToString("0.00")</td>
+                    <td>@bac.Tic?.ToString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Bac> bacList;
+
+    private int selectedYear = 2023; // Default year
+    private List<int> years = Enumerable.Range(2014, 10).ToList(); // 2014-2023
+
+    protected override void OnInitialized()
+    {
+        LoadBacData(selectedYear);
+    }
+
+    private void OnYearChanged(ChangeEventArgs e)
+    {
+        selectedYear = int.Parse(e.Value.ToString());
+        LoadBacData(selectedYear);
+    }
+
+    private void LoadBacData(int year)
+    {
+        string filePath = $"Data/Bac/{year}_final.csv"; // for example: Data/Bac2023.csv
+
+        if (File.Exists(filePath))
+        {
+            var repository = new BacRepository(filePath);
+            bacList = repository.GetAllBac()
+                .OrderByDescending(b => b.Avg)
+                .ToList();
+        }
+        else
+        {
+            bacList = new List<Bac>(); // No data
+        }
+    }
+}

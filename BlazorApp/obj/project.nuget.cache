@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "bA1fKFV0V/w=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\BlazorApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lidia\\.nuget\\packages\\csvhelper\\33.0.1\\csvhelper.33.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
