@@ -34,3 +34,4 @@ C:\Users\lidia\Documents\GitHub\StudyHub\BlazorApp\obj\Debug\net8.0\ref\BlazorAp
 C:\Users\lidia\Documents\GitHub\StudyHub\BlazorApp\bin\Debug\net8.0\CsvHelper.dll
 C:\Users\lidia\Documents\GitHub\StudyHub\BlazorApp\obj\Debug\net8.0\BlazorApp.csproj.AssemblyReference.cache
 C:\Users\lidia\Documents\GitHub\StudyHub\BlazorApp\obj\Debug\net8.0\BlazorApp.csproj.Up2Date
+C:\Users\lidia\Documents\GitHub\StudyHub\BlazorApp\obj\Debug\net8.0\BlazorApp.sourcelink.json

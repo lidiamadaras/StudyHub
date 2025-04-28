@@ -1,13 +1,15 @@
 ﻿@page "/"
 @using BlazorApp.Components.Models
 @using BlazorApp.Components.Repository
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+
 
 <PageTitle>Home</PageTitle>
 
 <h1>Rezultate BAC</h1>
 
 <label for="yearSelect">Select Year:</label>
-<select id="yearSelect" @onchange="OnYearChanged">
+<select id="yearSelect" @bind="selectedYear">
     @foreach (var year in years)
     {
         <option value="@year">@year</option>
@@ -23,19 +25,34 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Cod Judet</th>
-                <th>Scoala</th>
-                <th>Cod Student</th>
-                <th>Medie</th>
-                <th>Romana</th>
-                <th>Materie Obligatorie</th>
-                <th>Materie Aleasa</th>
-                <th>TIC</th>
+                <th @onclick="() => SortByColumn(nameof(Bac.County))">
+                    Cod Judet @(SortColumn == nameof(Bac.County) ? (SortAscending ? "▲" : "▼") : "")
+                </th>
+                <th @onclick="() => SortByColumn(nameof(Bac.School))">
+                    Scoala @(SortColumn == nameof(Bac.School) ? (SortAscending ? "▲" : "▼") : "")
+                </th>
+                <th @onclick="() => SortByColumn(nameof(Bac.Code))">
+                    Cod Student @(SortColumn == nameof(Bac.Code) ? (SortAscending ? "▲" : "▼") : "")
+                </th>
+                <th @onclick="() => SortByColumn(nameof(Bac.Avg))">
+                    Medie @(SortColumn == nameof(Bac.Avg) ? (SortAscending ? "▲" : "▼") : "")
+                </th>
+                <th @onclick="() => SortByColumn(nameof(Bac.RomanianGradeFinal))">
+                    Romana @(SortColumn == nameof(Bac.RomanianGradeFinal) ? (SortAscending ? "▲" : "▼") : "")
+                </th>
+                <th @onclick="() => SortByColumn(nameof(Bac.MandatoryGradeFinal))">
+                    Materie Obligatorie @(SortColumn == nameof(Bac.MandatoryGradeFinal) ? (SortAscending ? "▲" : "▼") : "")
+                </th>
+                <th @onclick="() => SortByColumn(nameof(Bac.ChosenGradeFinal))">
+                    Materie Aleasa @(SortColumn == nameof(Bac.ChosenGradeFinal) ? (SortAscending ? "▲" : "▼") : "")
+                </th>
+                <th @onclick="() => SortByColumn(nameof(Bac.Tic))">
+                    TIC @(SortColumn == nameof(Bac.Tic) ? (SortAscending ? "▲" : "▼") : "")
+                </th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var bac in bacList)
-            {
+            <Virtualize Items="bacList" Context="bac">
                 <tr>
                     <td>@bac.County</td>
                     <td>@bac.School</td>
@@ -46,27 +63,48 @@ else
                     <td>@bac.ChosenGradeFinal.ToString("0.00")</td>
                     <td>@bac.Tic?.ToString()</td>
                 </tr>
-            }
+            </Virtualize>
         </tbody>
     </table>
 }
 
+
 @code {
     private List<Bac> bacList;
 
-    private int selectedYear = 2023; // Default year
+    private int _selectedYear = 2023; // Default year
+    private int selectedYear
+    {
+        get => _selectedYear;
+        set
+        {
+            if (_selectedYear != value)
+            {
+                _selectedYear = value;
+                LoadBacData(_selectedYear);
+            }
+        }
+    }
+
+    private string SortColumn = nameof(Bac.Avg); // Default sort
+    private bool SortAscending = false;
+
+
+
     private List<int> years = Enumerable.Range(2014, 10).ToList(); // 2014-2023
+
+
 
     protected override void OnInitialized()
     {
         LoadBacData(selectedYear);
     }
 
-    private void OnYearChanged(ChangeEventArgs e)
-    {
-        selectedYear = int.Parse(e.Value.ToString());
-        LoadBacData(selectedYear);
-    }
+    // private void OnYearChanged(ChangeEventArgs e)
+    // {
+    //     selectedYear = int.Parse(e.Value.ToString());
+    //     LoadBacData(selectedYear);
+    // }
 
     private void LoadBacData(int year)
     {
@@ -75,13 +113,51 @@ else
         if (File.Exists(filePath))
         {
             var repository = new BacRepository(filePath);
-            bacList = repository.GetAllBac()
-                .OrderByDescending(b => b.Avg)
-                .ToList();
+            bacList = repository.GetAllBac().ToList(); // ← no need to sort manually here
+            SortColumn = nameof(Bac.Avg); // ← set default sort column
+            SortAscending = false; // ← descending
+            SortBacList();
         }
         else
         {
             bacList = new List<Bac>(); // No data
         }
     }
+
+    private void SortByColumn(string columnName)
+    {
+        if (SortColumn == columnName)
+        {
+            // If clicking the same column, reverse sort order
+            SortAscending = !SortAscending;
+        }
+        else
+        {
+            // New column clicked
+            SortColumn = columnName;
+            SortAscending = true;
+        }
+
+        SortBacList();
+    }
+
+    private void SortBacList()
+    {
+        if (bacList == null) return;
+
+        bacList = SortColumn switch
+        {
+            nameof(Bac.County) => (SortAscending ? bacList.OrderBy(b => b.County) : bacList.OrderByDescending(b => b.County)).ToList(),
+            nameof(Bac.School) => (SortAscending ? bacList.OrderBy(b => b.School) : bacList.OrderByDescending(b => b.School)).ToList(),
+            nameof(Bac.Code) => (SortAscending ? bacList.OrderBy(b => b.Code) : bacList.OrderByDescending(b => b.Code)).ToList(),
+            nameof(Bac.Avg) => (SortAscending ? bacList.OrderBy(b => b.Avg) : bacList.OrderByDescending(b => b.Avg)).ToList(),
+            nameof(Bac.RomanianGradeFinal) => (SortAscending ? bacList.OrderBy(b => b.RomanianGradeFinal) : bacList.OrderByDescending(b => b.RomanianGradeFinal)).ToList(),
+            nameof(Bac.MandatoryGradeFinal) => (SortAscending ? bacList.OrderBy(b => b.MandatoryGradeFinal) : bacList.OrderByDescending(b => b.MandatoryGradeFinal)).ToList(),
+            nameof(Bac.ChosenGradeFinal) => (SortAscending ? bacList.OrderBy(b => b.ChosenGradeFinal) : bacList.OrderByDescending(b => b.ChosenGradeFinal)).ToList(),
+            nameof(Bac.Tic) => (SortAscending ? bacList.OrderBy(b => b.Tic) : bacList.OrderByDescending(b => b.Tic)).ToList(),
+            _ => bacList
+        };
+    }
+
+
 }
