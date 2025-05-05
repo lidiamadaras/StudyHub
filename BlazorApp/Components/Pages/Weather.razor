@@ -1,63 +1,170 @@
-﻿@page "/weather"
+﻿@page "/statistics"
+@using BlazorApp.Components.Models
+@using BlazorApp.Components.Repository
+@using System.Globalization;
+@using System.Text;
 
-<PageTitle>Weather</PageTitle>
+<PageTitle>Statistics</PageTitle>
 
-<h1>Weather</h1>
+<h3>Average Medie by County</h3>
 
-<p>This component demonstrates showing data.</p>
+<label for="yearSelect">Select Year:</label>
+<select id="yearSelect" @bind="selectedYear">
+    @foreach (var year in years)
+    {
+        <option value="@year">@year</option>
+    }
+</select>
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<RomaniaMap CountyMedi="CountyMedi"
+            GetColor="GetColor"
+            CountyCodeMap="CountyCodeMap" />
+
 
 @code {
-    private WeatherForecast[]? forecasts;
 
-    protected override async Task OnInitializedAsync()
+    private List<Bac> bacList;
+	private List<CountyAverage> CountyMedi => GetCountyAverages(bacList, selectedYear);
+
+    private Dictionary<string, string> CountyCodeMap = new()
     {
-        // Simulate asynchronous loading to demonstrate a loading indicator
-        await Task.Delay(500);
+        { NormalizeCountyName("Alba"), "RO-AB" },
+        { NormalizeCountyName("Arad"), "RO-AR" },
+        { NormalizeCountyName("Arges"), "RO-AG" },
+        { NormalizeCountyName("Bacau"), "RO-BC" },
+        { NormalizeCountyName("Bihor"), "RO-BH" },
+        { NormalizeCountyName("Bistrita-Nasaud"), "RO-BN" },
+        { NormalizeCountyName("Botosani"), "RO-BT" },
+        { NormalizeCountyName("Brasov"), "RO-BV" },
+        { NormalizeCountyName("Braila"), "RO-BR" },
+        { NormalizeCountyName("Bucuresti"), "RO-B" },
+        { NormalizeCountyName("Buzau"), "RO-BZ" },
+        { NormalizeCountyName("Caras-Severin"), "RO-CS" },
+        { NormalizeCountyName("Calarasi"), "RO-CL" },
+        { NormalizeCountyName("Cluj"), "RO-CJ" },
+        { NormalizeCountyName("Constanta"), "RO-CT" },
+        { NormalizeCountyName("Covasna"), "RO-CV" },
+        { NormalizeCountyName("Dambovita"), "RO-DB" },
+        { NormalizeCountyName("Dolj"), "RO-DJ" },
+        { NormalizeCountyName("Galati"), "RO-GL" },
+        { NormalizeCountyName("Giurgiu"), "RO-GR" },
+        { NormalizeCountyName("Gorj"), "RO-GJ" },
+        { NormalizeCountyName("Harghita"), "RO-HR" },
+        { NormalizeCountyName("Hunedoara"), "RO-HD" },
+        { NormalizeCountyName("Ialomita"), "RO-IL" },
+        { NormalizeCountyName("Iasi"), "RO-IS" },
+        { NormalizeCountyName("Ilfov"), "RO-IF" },
+        { NormalizeCountyName("Maramures"), "RO-MM" },
+        { NormalizeCountyName("Mehedinti"), "RO-MH" },
+        { NormalizeCountyName("Mures"), "RO-MS" },
+        { NormalizeCountyName("Neamt"), "RO-NT" },
+        { NormalizeCountyName("Olt"), "RO-OT" },
+        { NormalizeCountyName("Prahova"), "RO-PH" },
+        { NormalizeCountyName("Satu Mare"), "RO-SM" },
+        { NormalizeCountyName("Salaj"), "RO-SJ" },
+        { NormalizeCountyName("Sibiu"), "RO-SB" },
+        { NormalizeCountyName("Suceava"), "RO-SV" },
+        { NormalizeCountyName("Teleorman"), "RO-TR" },
+        { NormalizeCountyName("Timis"), "RO-TM" },
+        { NormalizeCountyName("Tulcea"), "RO-TL" },
+        { NormalizeCountyName("Vaslui"), "RO-VS" },
+        { NormalizeCountyName("Valcea"), "RO-VL" },
+        { NormalizeCountyName("Vrancea"), "RO-VN" }
+    };
 
-        var startDate = DateOnly.FromDateTime(DateTime.Now);
-        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
-        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+    static string NormalizeCountyName(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            return "";
+
+        var normalized = input.Normalize(NormalizationForm.FormD);
+        var sb = new StringBuilder();
+
+        foreach (var c in normalized)
         {
-            Date = startDate.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        }).ToArray();
+            var uc = CharUnicodeInfo.GetUnicodeCategory(c);
+            if (uc != UnicodeCategory.NonSpacingMark)
+                sb.Append(c);
+        }
+
+        return sb.ToString().ToLowerInvariant(); // lowercase for consistent lookup
     }
 
-    private class WeatherForecast
+
+
+    private int _selectedYear = 2023; // Default year
+    private int selectedYear
     {
-        public DateOnly Date { get; set; }
-        public int TemperatureC { get; set; }
-        public string? Summary { get; set; }
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        get => _selectedYear;
+        set
+        {
+            if (_selectedYear != value)
+            {
+                _selectedYear = value;
+                LoadBacData(_selectedYear);
+            }
+        }
     }
+
+    private List<int> years = Enumerable.Range(2014, 10).ToList(); // 2014-2023
+
+    protected override void OnInitialized()
+    {
+        LoadBacData(selectedYear);
+    }
+
+    private void LoadBacData(int year)
+    {
+        string filePath = $"Data/Bac/{year}_final.csv";
+
+        if (File.Exists(filePath))
+        {
+            var repository = new BacRepository(filePath);
+            var allBacs = repository.GetAllBac();
+
+            // if (showOnlyHungarians)
+            // {
+            //     allBacs = allBacs.Where(b => b.Nationality?.Trim().ToLower() == "Maghiara").ToList();
+            //     Logger.LogInformation("Hungarian count: {Count}", allBacs.Count);
+
+            // }
+
+            bacList = allBacs;
+
+            //SortBacList();
+        }
+        else
+        {
+            bacList = new List<Bac>();
+        }
+    }
+
+
+
+    string GetColor(double avg)
+    {
+        double max = CountyMedi.Max(c => c.Average);
+        double min = CountyMedi.Min(c => c.Average);
+        double normalized = (avg - min) / (max - min);
+        int val = (int)(255 - normalized * 180);
+        return $"rgb({val}, {val}, 255)"; 
+    }
+
+    public List<CountyAverage> GetCountyAverages(List<Bac> data, int year)
+    {
+        return data
+            .Where(b => b.Year == year)
+            .GroupBy(b => b.CountyRo) 
+            .Select(g => new CountyAverage
+                {
+                    County = NormalizeCountyName(g.Key),
+                    Average = Math.Round(g.Average(b => b.Avg), 2)
+                })
+            .OrderByDescending(ca => ca.Average)
+            .ToList();
+    }
+
+   
+
+
 }

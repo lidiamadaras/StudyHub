@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|c:\\users\\lidia\\documents\\github\\studyhub\\blazorapp\\components\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|solutionrelative:components\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|c:\\users\\lidia\\documents\\github\\studyhub\\blazorapp\\components\\models\\romaniamap.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|solutionrelative:components\\models\\romaniamap.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|c:\\users\\lidia\\documents\\github\\studyhub\\blazorapp\\components\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|solutionrelative:components\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|c:\\users\\lidia\\documents\\github\\studyhub\\blazorapp\\components\\models\\countyaverage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|solutionrelative:components\\models\\countyaverage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|c:\\users\\lidia\\documents\\github\\studyhub\\blazorapp\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|solutionrelative:components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|c:\\users\\lidia\\documents\\github\\studyhub\\blazorapp\\components\\models\\bac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,12 +27,12 @@
       "RelativeMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|solutionrelative:components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|c:\\users\\lidia\\documents\\github\\studyhub\\blazorapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|c:\\users\\lidia\\documents\\github\\studyhub\\blazorapp\\components\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|solutionrelative:components\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|c:\\users\\lidia\\documents\\github\\studyhub\\blazorapp\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|solutionrelative:components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|c:\\users\\lidia\\documents\\github\\studyhub\\blazorapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AFEE7706-6F03-4067-88FA-8471B3648DC3}|BlazorApp.csproj|c:\\users\\lidia\\documents\\github\\studyhub\\blazorapp\\components\\models\\csvhelpers\\csvadmiterehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,59 +74,96 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CountyAverage.cs",
+              "DocumentMoniker": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Models\\CountyAverage.cs",
+              "RelativeDocumentMoniker": "Components\\Models\\CountyAverage.cs",
+              "ToolTip": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Models\\CountyAverage.cs",
+              "RelativeToolTip": "Components\\Models\\CountyAverage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T12:06:09.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RomaniaMap.razor",
+              "DocumentMoniker": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Models\\RomaniaMap.razor",
+              "RelativeDocumentMoniker": "Components\\Models\\RomaniaMap.razor",
+              "ToolTip": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Models\\RomaniaMap.razor*",
+              "RelativeToolTip": "Components\\Models\\RomaniaMap.razor*",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAAAKEAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-05T11:41:31.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Weather.razor",
+              "DocumentMoniker": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Pages\\Weather.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Weather.razor",
+              "ToolTip": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Pages\\Weather.razor",
+              "RelativeToolTip": "Components\\Pages\\Weather.razor",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAUwKkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-05T10:45:04.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "BAC.cs",
               "DocumentMoniker": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Models\\BAC.cs",
               "RelativeDocumentMoniker": "Components\\Models\\BAC.cs",
               "ToolTip": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Models\\BAC.cs",
               "RelativeToolTip": "Components\\Models\\BAC.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAqwCoAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-28T15:46:35.228Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "NavMenu.razor",
               "DocumentMoniker": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Layout\\NavMenu.razor",
               "RelativeDocumentMoniker": "Components\\Layout\\NavMenu.razor",
               "ToolTip": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Layout\\NavMenu.razor",
               "RelativeToolTip": "Components\\Layout\\NavMenu.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAgwBgAAABeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-28T15:41:12.593Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "Counter.razor",
               "DocumentMoniker": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Pages\\Counter.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\Counter.razor",
-              "ToolTip": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Pages\\Counter.razor*",
-              "RelativeToolTip": "Components\\Pages\\Counter.razor*",
-              "ViewState": "AgIAADEAAAAAAAAAAAAcwE0AAAAJAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Pages\\Counter.razor",
+              "RelativeToolTip": "Components\\Pages\\Counter.razor",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAgwKIAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-28T15:39:17.276Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T15:39:17.276Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T17:43:53.513Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T17:43:53.513Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "CSVAdmitereHelper.cs",
               "DocumentMoniker": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Models\\CSVHelpers\\CSVAdmitereHelper.cs",
               "RelativeDocumentMoniker": "Components\\Models\\CSVHelpers\\CSVAdmitereHelper.cs",
@@ -126,20 +175,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Home.razor",
               "DocumentMoniker": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\Home.razor",
               "ToolTip": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Pages\\Home.razor",
               "RelativeToolTip": "Components\\Pages\\Home.razor",
-              "ViewState": "AgIAADoAAAAAAAAAAAAAwEQAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAAAE4AAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-26T16:40:51.655Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "EvNatRepository.cs",
               "DocumentMoniker": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Repository\\EvNatRepository.cs",
               "RelativeDocumentMoniker": "Components\\Repository\\EvNatRepository.cs",
@@ -151,7 +200,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "BacRepository.cs",
               "DocumentMoniker": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Repository\\BacRepository.cs",
               "RelativeDocumentMoniker": "Components\\Repository\\BacRepository.cs",
@@ -163,7 +212,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "AdmitereRepository.cs",
               "DocumentMoniker": "C:\\Users\\lidia\\Documents\\GitHub\\StudyHub\\BlazorApp\\Components\\Repository\\AdmitereRepository.cs",
               "RelativeDocumentMoniker": "Components\\Repository\\AdmitereRepository.cs",

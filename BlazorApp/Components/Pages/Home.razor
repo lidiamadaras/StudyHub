@@ -2,6 +2,7 @@
 @using BlazorApp.Components.Models
 @using BlazorApp.Components.Repository
 @using Microsoft.AspNetCore.Components.Web.Virtualization
+@inject ILogger<Home> Logger
 
 
 <PageTitle>Home</PageTitle>
@@ -15,6 +16,11 @@
         <option value="@year">@year</option>
     }
 </select>
+
+<button class="btn btn-primary" @onclick="ToggleHungarianFilter">
+    @(showOnlyHungarians ? "Show All Students" : "Only Hungarians")
+</button>
+
 
 @if (bacList == null)
 {
@@ -93,6 +99,15 @@ else
 
     private List<int> years = Enumerable.Range(2014, 10).ToList(); // 2014-2023
 
+    private bool showOnlyHungarians = false;
+
+    private void ToggleHungarianFilter()
+    {
+        showOnlyHungarians = !showOnlyHungarians;
+        LoadBacData(selectedYear);
+    }
+
+
 
 
     protected override void OnInitialized()
@@ -100,29 +115,32 @@ else
         LoadBacData(selectedYear);
     }
 
-    // private void OnYearChanged(ChangeEventArgs e)
-    // {
-    //     selectedYear = int.Parse(e.Value.ToString());
-    //     LoadBacData(selectedYear);
-    // }
-
     private void LoadBacData(int year)
     {
-        string filePath = $"Data/Bac/{year}_final.csv"; // for example: Data/Bac2023.csv
+        string filePath = $"Data/Bac/{year}_final.csv";
 
         if (File.Exists(filePath))
         {
             var repository = new BacRepository(filePath);
-            bacList = repository.GetAllBac().ToList(); // ← no need to sort manually here
-            SortColumn = nameof(Bac.Avg); // ← set default sort column
-            SortAscending = false; // ← descending
+            var allBacs = repository.GetAllBac();
+
+            if (showOnlyHungarians)
+            {
+                allBacs = allBacs.Where(b => b.Nationality?.Trim().ToLower() == "Maghiara").ToList(); 
+                Logger.LogInformation("Hungarian count: {Count}", allBacs.Count);
+
+            }
+
+            bacList = allBacs;
+
             SortBacList();
         }
         else
         {
-            bacList = new List<Bac>(); // No data
+            bacList = new List<Bac>();
         }
     }
+
 
     private void SortByColumn(string columnName)
     {

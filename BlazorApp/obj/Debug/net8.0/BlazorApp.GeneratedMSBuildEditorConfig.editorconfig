@@ -24,6 +24,10 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/lidia/Documents/GitHub/StudyHub/BlazorApp/Components/Models/RomaniaMap.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2RlbHNcUm9tYW5pYU1hcC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/lidia/Documents/GitHub/StudyHub/BlazorApp/Components/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

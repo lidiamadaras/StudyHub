@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Components",
+    "\\Components\\Layout",
+    "\\Components\\Pages"
   ],
   "SelectedNode": "\\BlazorApp.sln",
   "PreviewInSolutionExplorer": false
