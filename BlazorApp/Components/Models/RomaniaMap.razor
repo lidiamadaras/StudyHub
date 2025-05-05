@@ -133,34 +133,60 @@
     </g>
 </svg>
 
-<svg viewBox="0 0 1000 700" width="800" height="600">
+
+<svg viewBox="0 0 1100 700" width="800" height="500">
     <use href="#romania-map" />
-
-
         @foreach (var county in CountyMedi)
         {
             var normalized = NormalizeCountyName(county.County);
             if (CountyCodeMap.TryGetValue(normalized, out var svgId))
             {
-                <use href="#@svgId"
-                     style="fill:@GetColor(county.Average);stroke:#000;stroke-width:0.5"
-                     title="@($"{county.County}: {county.Average:F2}")" />
+                var avgValue = county.Average.ToString("0.00");
 
-                <!-- Text label for the county -->
-                <text>
-                    <textPath href="#@svgId"
-                              startOffset="50%"
-                              text-anchor="middle"
-                              font-size="8"
-                              fill="black"
-                              font-weight="bold">
-                        @($"{svgId}: {county.Average:F2}")
-                    </textPath>
-                </text>
+            <use href="#@svgId"
+                 fill="@GetColor(county.Average)"
+                 class="county"
+                 data-tooltip="@($"{county.County}: {county.Average:0.00}")" />
             }
         }
+
+    <g transform="translate(1020, 100)">
+        <text x="0" y="-20" font-size="16" font-weight="bold">Legend</text>
+
+        <rect x="0" y="0" width="20" height="20" fill="@GetColor(1)" />
+        <text x="30" y="15" font-size="14">1</text>
+
+        <rect x="0" y="30" width="20" height="20" fill="@GetColor(2)" />
+        <text x="30" y="45" font-size="14">2</text>
+
+        <rect x="0" y="60" width="20" height="20" fill="@GetColor(3)" />
+        <text x="30" y="75" font-size="14">3</text>
+
+        <rect x="0" y="90" width="20" height="20" fill="@GetColor(4)" />
+        <text x="30" y="105" font-size="14">4</text>
+
+        <rect x="0" y="120" width="20" height="20" fill="@GetColor(5)" />
+        <text x="30" y="135" font-size="14">5</text>
+
+        <rect x="0" y="150" width="20" height="20" fill="@GetColor(6)" />
+        <text x="30" y="165" font-size="14">6</text>
+
+        <rect x="0" y="180" width="20" height="20" fill="@GetColor(7)" />
+        <text x="30" y="195" font-size="14">7</text>
+
+        <rect x="0" y="210" width="20" height="20" fill="@GetColor(8)" />
+        <text x="30" y="225" font-size="14">8</text>
+
+        <rect x="0" y="240" width="20" height="20" fill="@GetColor(9)" />
+        <text x="30" y="255" font-size="14">9</text>
+
+        <rect x="0" y="270" width="20" height="20" fill="@GetColor(10)" />
+        <text x="30" y="285" font-size="14">10</text>
+    </g>
+
   
 </svg>
+
 
 @code {
     [Parameter]

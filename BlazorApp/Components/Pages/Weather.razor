@@ -4,6 +4,10 @@
 @using System.Globalization;
 @using System.Text;
 
+@inject IJSRuntime JS
+
+
+
 <PageTitle>Statistics</PageTitle>
 
 <h3>Average Medie by County</h3>
@@ -20,11 +24,45 @@
             GetColor="GetColor"
             CountyCodeMap="CountyCodeMap" />
 
+<div style="text-align: center;">
+    <h4>Hungarian (@hungarianCount)</h4>
+    <div style="width: 100px; height: @hungarianAverage * 10px; background-color: #4e79a7;"></div>
+    <p>@hungarianAverage?.ToString("0.00")</p>
+</div>
+
+<div style="text-align: center;">
+    <h4>Romanian (@romanianCount)</h4>
+    <div style="width: 100px; height: @romanianAverage * 10px; background-color: #f28e2c;"></div>
+    <p>@romanianAverage?.ToString("0.00")</p>
+</div>
+
+
 
 @code {
 
     private List<Bac> bacList;
 	private List<CountyAverage> CountyMedi => GetCountyAverages(bacList, selectedYear);
+
+    private int hungarianCount => bacList?
+    .Count(b => b.Year == selectedYear && b.Nationality?.Trim().ToLower() == "maghiara" && b.Avg > 0) ?? 0;
+
+    private int romanianCount => bacList?
+        .Count(b => b.Year == selectedYear && b.Nationality?.Trim().ToLower() == "romana" && b.Avg > 0) ?? 0;
+
+
+    private double? hungarianAverage => bacList?
+    .Where(b => b.Year == selectedYear && b.Nationality?.Trim().ToLower() == "maghiara" && b.Avg > 0)
+    .Select(b => b.Avg)
+    .DefaultIfEmpty(0)
+    .Average();
+
+    private double? romanianAverage => bacList?
+        .Where(b => b.Year == selectedYear && b.Nationality?.Trim().ToLower() == "romana" && b.Avg > 0)
+        .Select(b => b.Avg)
+        .DefaultIfEmpty(0)
+        .Average();
+
+
 
     private Dictionary<string, string> CountyCodeMap = new()
     {
@@ -87,12 +125,12 @@
                 sb.Append(c);
         }
 
-        return sb.ToString().ToLowerInvariant(); // lowercase for consistent lookup
+        return sb.ToString().ToLowerInvariant(); 
     }
 
 
 
-    private int _selectedYear = 2023; // Default year
+    private int _selectedYear = 2023; 
     private int selectedYear
     {
         get => _selectedYear;
@@ -111,6 +149,7 @@
     protected override void OnInitialized()
     {
         LoadBacData(selectedYear);
+
     }
 
     private void LoadBacData(int year)
@@ -122,16 +161,8 @@
             var repository = new BacRepository(filePath);
             var allBacs = repository.GetAllBac();
 
-            // if (showOnlyHungarians)
-            // {
-            //     allBacs = allBacs.Where(b => b.Nationality?.Trim().ToLower() == "Maghiara").ToList();
-            //     Logger.LogInformation("Hungarian count: {Count}", allBacs.Count);
-
-            // }
-
             bacList = allBacs;
 
-            //SortBacList();
         }
         else
         {
@@ -139,16 +170,36 @@
         }
     }
 
-
-
-    string GetColor(double avg)
+    string GetColor(double value)
     {
-        double max = CountyMedi.Max(c => c.Average);
-        double min = CountyMedi.Min(c => c.Average);
-        double normalized = (avg - min) / (max - min);
-        int val = (int)(255 - normalized * 180);
-        return $"rgb({val}, {val}, 255)"; 
+        int grade = (int)Math.Round(value);
+
+        return grade switch
+        {
+            1 => "#e0f0ff", // lightest
+            2 => "#b3d9ff",
+            3 => "#99ccff",
+            4 => "#80bfff",
+            5 => "#66b2ff",
+            6 => "#3399ff",
+            7 => "#1a8cff",
+            8 => "#0073e6",
+            9 => "#0059b3",
+            10 => "#003d80", // darkest
+            _ => "#ffffff" // fallback to white for invalid values
+        };
     }
+
+
+
+    // string GetColor(double avg)
+    // {
+    //     double max = CountyMedi.Max(c => c.Average);
+    //     double min = CountyMedi.Min(c => c.Average);
+    //     double normalized = (avg - min) / (max - min);
+    //     int val = (int)(255 - normalized * 180);
+    //     return $"rgb({val}, {val}, 255)"; 
+    // }
 
     public List<CountyAverage> GetCountyAverages(List<Bac> data, int year)
     {
@@ -163,8 +214,4 @@
             .OrderByDescending(ca => ca.Average)
             .ToList();
     }
-
-   
-
-
 }

@@ -126,9 +126,8 @@ else
 
             if (showOnlyHungarians)
             {
-                allBacs = allBacs.Where(b => b.Nationality?.Trim().ToLower() == "Maghiara").ToList(); 
+                allBacs = allBacs.Where(b => b.Nationality?.Trim() == "Maghiara" && b.Avg > 0).ToList();
                 Logger.LogInformation("Hungarian count: {Count}", allBacs.Count);
-
             }
 
             bacList = allBacs;
@@ -146,12 +145,10 @@ else
     {
         if (SortColumn == columnName)
         {
-            // If clicking the same column, reverse sort order
             SortAscending = !SortAscending;
         }
         else
         {
-            // New column clicked
             SortColumn = columnName;
             SortAscending = true;
         }

@@ -3,6 +3,7 @@
     "",
     "\\Components",
     "\\Components\\Layout",
+    "\\Components\\Models",
     "\\Components\\Pages"
   ],
   "SelectedNode": "\\BlazorApp.sln",
